@@ -20,4 +20,6 @@ public class FragmenChatting extends Fragment{
         view = inflater.inflate(R.layout.chatting_fragmen,container,false);
         return view;
     }
+
+    //ini lagi ngoding
 }
