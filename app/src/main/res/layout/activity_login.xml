@@ -4,16 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="28dp"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context="com.example.zart.appchattingfix.Login">
+    android:background="@drawable/animation_list"
+    tools:context="com.example.zart.appchattingfix.Login"
+    android:id="@+id/linearLayout1">
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/gambar"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/ic_chat_bubble_outline_black_24dp"
+            android:layout_centerHorizontal="true"
+            />
+
         <TextView
+            android:layout_below="@+id/mundur"
             android:id="@+id/edt_kode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -28,6 +38,7 @@
             android:layout_width="145dp"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/edt_kode"
+            android:layout_below="@+id/mundur"
             android:hint=" Masukan Nomor"
             android:inputType="phone"
             android:layout_centerHorizontal="true"
@@ -35,11 +46,12 @@
 
         <TextView
             android:id="@+id/mundur"
+            android:layout_below="@+id/gambar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:textSize="20dp"
+            android:textSize="30dp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -48,9 +60,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/mundur"
-            android:layout_marginTop="50dp"
-            android:orientation="horizontal">
+            android:layout_below="@+id/gambar"
+            android:layout_marginTop="90dp"
+            android:orientation="horizontal"
+            >
 
             <Button
                 android:id="@+id/login"
@@ -79,7 +92,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/phone"
         android:layout_toLeftOf="@+id/verifi"
-        android:hint="   Kode"
+        android:hint=" - - - - - -"
         android:inputType="number"
         android:maxLength="6" />
 

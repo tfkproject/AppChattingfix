@@ -1,6 +1,7 @@
 package com.example.zart.appchattingfix;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +33,8 @@ import java.util.concurrent.TimeUnit;
 public class Login extends AppCompatActivity implements View.OnClickListener{
 
     //variabel komponen yg diperlukan
+    LinearLayout linearLayout;
+    AnimationDrawable animationDrawable;
     private EditText noTelpon, setkode;
     private Button masuk, verifikasi, resend;
     private TextView mundur;
@@ -95,6 +99,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         resend.setOnClickListener(this);
         resend.setEnabled(false);
 
+        linearLayout = (LinearLayout) findViewById(R.id.linearLayout1);
+        animationDrawable = (AnimationDrawable) linearLayout.getBackground();
+
+        animationDrawable.setEnterFadeDuration(5000);
+        animationDrawable.setExitFadeDuration(2000);
+
         //menghubungkan project dgn firebase autentikasi
         auth = FirebaseAuth.getInstance();
         stateListener = new FirebaseAuth.AuthStateListener(){
@@ -111,6 +121,24 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                 }
             }
         };
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if (animationDrawable != null && animationDrawable.isRunning()){
+            animationDrawable.stop();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (animationDrawable != null && !animationDrawable.isRunning()){
+            animationDrawable.start();
+        }
     }
 
     @Override
