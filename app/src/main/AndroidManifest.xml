@@ -32,7 +32,7 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".Login">
+        <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -46,8 +46,8 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".ChatRoomActivity"
             android:theme="@style/Theme.Design.NoActionBar">
-
         </activity>
+        <activity android:name=".Login"/>
     </application>
 
 </manifest>
