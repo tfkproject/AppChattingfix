@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.zart.appchattingfix.model.MessageAdapter;
@@ -102,7 +103,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         mChatUser = getIntent().getStringExtra("phone");
         String userName = getIntent().getStringExtra("nama");
-        Log.e("username",userName.toString());
+        Log.e("username", userName.toString());
 
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View action_bar_view = inflater.inflate(R.layout.chat_custom_bar, null);
@@ -144,7 +145,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                if(dataSnapshot!=null){
+                if (dataSnapshot != null) {
 //                    String online = dataSnapshot.child("Online").getValue().toString();
 //                    String image = dataSnapshot.child("foto").getValue().toString();
 //
@@ -183,7 +184,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                if(!dataSnapshot.hasChild(mChatUser)){
+                if (!dataSnapshot.hasChild(mChatUser)) {
 
                     Map chatAddMap = new HashMap();
                     chatAddMap.put("seen", false);
@@ -197,7 +198,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
 
-                            if(databaseError != null){
+                            if (databaseError != null) {
 
                                 Log.d("CHAT_LOG", databaseError.getMessage().toString());
 
@@ -217,7 +218,6 @@ public class ChatRoomActivity extends AppCompatActivity {
         });
 
 
-
         mChatSendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -226,7 +226,6 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             }
         });
-
 
 
         mChatgaleriBtn.setOnClickListener(new View.OnClickListener() {
@@ -250,11 +249,10 @@ public class ChatRoomActivity extends AppCompatActivity {
                 StrictMode.setVmPolicy(builder.build());
                 cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-                startActivityForResult(Intent.createChooser(cameraIntent,"Select Picture"), REQUEST_CAMERA);
+                startActivityForResult(Intent.createChooser(cameraIntent, "Select Picture"), REQUEST_CAMERA);
 
             }
         });
-
 
 
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -398,7 +396,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         String message = mChatMessageView.getText().toString();
 
-        if(!TextUtils.isEmpty(message)){
+        if (!TextUtils.isEmpty(message)) {
 
             String current_user_ref = "messages/" + mCurrentUserId + "/" + mChatUser;
             String chat_user_ref = "messages/" + mChatUser + "/" + mCurrentUserId;
@@ -431,7 +429,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
 
-                    if(databaseError != null){
+                    if (databaseError != null) {
 
                     }
 
@@ -441,9 +439,6 @@ public class ChatRoomActivity extends AppCompatActivity {
         }
 
     }
-
-    @Override
-    public void onBackPressed() {
-        finish();
-    }
 }
+
+
